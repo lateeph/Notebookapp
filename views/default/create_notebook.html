@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>NOTEBOOKAPP</title>
+	<link rel="stylesheet" type="text/css" href="{{=URL('static','css/bootstrap.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{=URL('static','css/style.css')}}">
+</head>
+<body>
+	<div class="container-fluid">
+		<div class="container-fluid">
+			<div class="row col1">
+				<h1>NOTEBOOKAPP</h1>
+			</div>
+		</div>	
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-2"></div>
+			<div class="col-md-8 form-div">
+				<form action="{{=URL('store')}}" method="post">
+					<div class="form-group">
+				  		<label for="exampleinputtitle">Title</label>
+				  		<input type="text" class="form-control" placeholder="Title" name="title">
+				  	</div>
+				  	<div class="form-group">
+				    	<label for="exampleInputFile">Image Cover</label>
+				    	<input type="file" class="form-control" name="file">
+				  	</div>
+				  	<div>
+				  		<input type="submit" class="btn btn-primary" value="Create Notebook">
+					</div>	
+				</form>
+			</div>
+			<div class="col-md-2"></div>
+		</div>
+	</div>
+	<script src="{{=URL('static','js/jquery.js')}}"></script>	
+	<script src="{{=URL('static','js/bootstrap.js')}}"></script>
+</body>
+</html>

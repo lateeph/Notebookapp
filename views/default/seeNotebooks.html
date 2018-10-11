@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="{{=URL('static','css/bootstrap.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{=URL('static','css/style.css')}}">
+	<title>NOTEBOOK</title>
+	<h2>NOTEBOOKAPP</h2>
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="list-group">
+			  	<a href="#" class="list-group-item active text-center">
+			    NOTEBOOKS
+			 	</a>
+			 	{{for notebook in notebooks:}}
+			  	<a href="#" class="list-group-item">{{=notebook.title}}</a>
+			  	{{pass}}
+
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+

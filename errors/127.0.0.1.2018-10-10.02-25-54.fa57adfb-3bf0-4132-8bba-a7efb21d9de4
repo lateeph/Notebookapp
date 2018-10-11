@@ -1,0 +1,21 @@
+(dp1
+S'output'
+p2
+S'missing "pass" in view'
+p3
+sS'layer'
+p4
+S'ParserContainer'
+p5
+sS'code'
+p6
+S"if notebook:\n    response.write('\\r\\n<ul>\\r\\n', escape=False)\n    for notebook in notebooks:\n        response.write('\\r\\n', escape=False)\n        response.write(notebooks.title)\n        response.write('\\r\\n', escape=False)\n        pass\n    response.write('\\r\\n</ul>', escape=False)"
+p7
+sS'snapshot'
+p8
+(dp9
+sS'traceback'
+p10
+S'None\n'
+p11
+s.
