@@ -58,6 +58,12 @@ def download():
     return response.download(request, db)
 
 def create_notebook():
+    form = SQLFORM(db.notebooks)
+    if form.process(session=None, formname='notebooks').accepted:
+        response.flash = 'NoteBook added successfully'
+        redirect(URL('showNotebooks'))
+    else:           
+        response.flash = 'An error occurred'
     return dict()
 
 def store():
