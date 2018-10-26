@@ -26,9 +26,10 @@
 				  		<label for="exampleinputtitle">Title</label>
 				  		<input type="text" class="form-control" placeholder="Title" name="title">
 				  	</div>
-				  	<input type="hidden" name="_formname" value="notebooks">
+				  	<input type="hidden" name="_formname" value="notebook_update">
+				  	<input type="hidden" name="id" value="{{=notebook.id}}">
 				  	<div>
-				  		<input type="submit" class="btn btn-primary" value="Create Notebook">
+				  		<input type="submit" class="btn btn-primary" value="Update Notebook">
 					</div>	
 				</form>
 				<a href="{{=URL('seeNotebooks')}}">See All Notebooks</a>

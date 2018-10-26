@@ -160,3 +160,8 @@ db.define_table('notebooks',
                 Field('title'),
                 Field('file', 'upload'),
                 format = '%(title)s')
+
+db.define_table('notes', 
+    Field('notebook_id', 'reference notebooks'), 
+    Field('title'),
+    Field('body', 'text'))

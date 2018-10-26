@@ -77,3 +77,11 @@ success!
 success!
 success!
 success!
+timestamp: 2018-10-26T00:58:25.460000
+CREATE TABLE "notes"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "notebook_id" INTEGER REFERENCES "notebooks" ("id") ON DELETE CASCADE  ,
+    "title" CHAR(512),
+    "body" TEXT
+);
+success!

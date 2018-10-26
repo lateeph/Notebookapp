@@ -10,15 +10,30 @@
 	<h2>NOTEBOOKAPP</h2>
 </head>
 <body>
+	{{if response.flash:}}
+  	{{=response.flash}}
+  	{{pass}}
 	<div class="container">
 		<div class="row">
 			<div class="list-group">
 			  	<div class="list-group-item active text-center">
 			    NOTEBOOKS
 			 	</div>
+			 	<div>
+			 	{{if notebooks:}}
 			 	{{for notebook in notebooks:}}
-			  	<p class="list-group-item">{{=notebook.title}}</p>
+			  	<p class="list-group-item">{{=notebook.title}}<br>
+			  	<a href="{{=URL('showNotes', args=notebook.id)}}">See Notes</a>
+                     &nbsp; <a href="{{=URL('deleteNotebook', args=notebook.id)}}">Delete Notebook</a> 
+                     &nbsp; <a href="{{=URL('create_note', args=notebook.id)}}">Add Note</a>
+                     &nbsp; <a href="{{=URL('updateNotebook', args=notebook.id)}}">Update Notebook</a></p>
 			  	{{pass}}
+			  	{{else:}}
+			  	<div>
+			  	No Notebooks added yet. Please <a href="{{=URL('create_notebook')}}"> add a notebook</a>
+			  	</div>
+			  	{{pass}}
+			  	</div>
 			</div>
 		</div>
 	</div>

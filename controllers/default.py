@@ -61,30 +61,70 @@ def create_notebook():
     form = SQLFORM(db.notebooks)
     if form.process(session=None, formname='notebooks').accepted:
         response.flash = 'NoteBook added successfully'
-        redirect(URL('showNotebooks'))
+        redirect(URL('seeNotebooks'))
     else:           
         response.flash = 'An error occurred'
     return dict()
 
-def store():
-    submitted_title = request.vars.title
-    submitted_file = request.vars.file
-
-    results = db.notebooks.insert(
-        title = submitted_title,
-        file = submitted_file
-)
-
- 
-
-    if results:
-        return "NOtebook created Successfully"
-    else:
-        return "An Error Occured"
-
 def seeNotebooks():
-    notebooks = db().select(db.notebooks.ALL)
+    notebooks = db().select(db.notebooks.ALL, orderby=~db.notebooks.id)
     return dict(notebooks=notebooks)
 
+
+def updateNotebook():
+    notebookId = request.args(0) or redirect(URL())
+    notebook = db.notebooks(notebookId) or redirect(URL())
+    form = SQLFORM(db.notebooks, notebookId)
+    if form.process(session=None, formname='notebook_update').accepted:
+        redirect(URL('seeNotebooks'))
+    return dict(notebook=notebook)
+
+
+def deleteNotebook():
+    if db(db.notebooks.id == request.args(0)).delete():
+        response.flash = 'Notebook Deleted Successfully'
+    else:
+        response.flash = 'An Error Occurred while deleting notebook'
+    redirect(request.env.http_referer)
+
+
+
 def create_note():
-    return dict()
+    notebookId = request.args(0, cast=int) or redirect(URL())
+    form = SQLFORM(db.notes)
+    if form.process(session=None, formname='note').accepted:
+        response.flash = 'note added successfully'
+        redirect(URL('showNotes', args=notebookId))
+    else:
+        response.flash = 'error occurred while adding note'
+    return dict(form=form, notebookId=notebookId)
+
+def showNotes():
+    notebookId = request.args(0) or redirect(URL())
+    notes = db(db.notes.notebook_id==notebookId).select(orderby=~db.notes.id)
+    return dict(notes=notes, notebookId=notebookId)
+
+def deleteNote():
+    noteId = request.args(0) or redirect(URL())
+    if db(db.notes.id == noteId).delete():
+        response.flash = 'Note Deleted Successfully'
+    else:
+        response.flash = 'An Error Occurred while deleting note'
+    redirect(request.env.http_referer)
+
+
+def updateNote():
+    noteId = request.args(1) or redirect(URL())
+    notebookId = request.args(0) or redirect(URL())
+    note = db.notes(noteId) or redirect(URL())
+    form = SQLFORM(db.notes, noteId)
+    if form.process(session=None, formname='note').accepted:
+        redirect(URL('showNotes', args=notebookId))
+    else:
+        response.flash = 'Error Occurred'
+    return dict(note=note)
+
+def showNoteDetails():
+    noteId = request.args(0) or redirect(URL())
+    note = db.notes(noteId) or redirect(URL())
+    return dict(note=note)

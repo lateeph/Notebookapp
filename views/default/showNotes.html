@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>NOTEBOOKAPP</title>
+	<meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="{{=URL('static','css/bootstrap.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{=URL('static','css/style.css')}}">
+</head>
+<body>
+	{{if response.flash:}}
+  	{{=response.flash}}
+  	{{pass}}
+  	<center>
+        <a href="{{=URL('create_note', args=notebookId)}}"><button>Add Note</button></a>
+    </center>
+  	<div class="container">
+		<div class="row">
+			<div class="list-group">
+			  	<div class="list-group-item active text-center">
+			    NOTES
+			 	</div>
+			 	<div>
+			 	{{if notes:}}
+			 	{{for note in notes:}}
+			  		<p class="list-group-item">{{=note.title}}<br>
+			  		{{=note.body}}<br>
+			  		<a href="{{=URL('showNoteDetails', args=note.id)}}">See Note Details</a>
+                     &nbsp; <a href="{{=URL('deleteNote', args=note.id)}}">Delete Note</a>
+                     &nbsp; <a href="{{=URL('updateNote', args=[notebookId,note.id])}}">Update Note</a></p>
+			  	{{pass}}
+			  	{{else:}}
+			  		<div>No Notebooks added yet. Please <a href="{{=URL('create_note', args=notebookId)}}"> add a notebook</a></div>
+			  	{{pass}}
+			  	</div>
+			</div>
+		</div>
+	</div>
+	<script src="{{=URL('static','js/jquery.js')}}"></script> 
+  	<script src="{{=URL('static','js/bootstrap.js')}}"></script>
+</body>
+</html>
