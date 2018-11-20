@@ -28,7 +28,8 @@
 			  		{{=note.body}}<br>
 			  		<a href="{{=URL('showNoteDetails', args=note.id)}}">See Note Details</a>
                      &nbsp; <a href="{{=URL('deleteNote', args=note.id)}}">Delete Note</a>
-                     &nbsp; <a href="{{=URL('updateNote', args=[notebookId,note.id])}}">Update Note</a></p>
+                     
+                     &nbsp; <a href="{{=URL('updateNote/' + str(note.id) + '/' + str(notebookId))}}">Update Note</a>
 			  	{{pass}}
 			  	{{else:}}
 			  		<div>No Notebooks added yet. Please <a href="{{=URL('create_note', args=notebookId)}}"> add a notebook</a></div>

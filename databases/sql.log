@@ -85,3 +85,108 @@ CREATE TABLE "notes"(
     "body" TEXT
 );
 success!
+timestamp: 2018-11-08T13:50:12.407000
+CREATE TABLE "auth_user"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "first_name" CHAR(128),
+    "last_name" CHAR(128),
+    "email" CHAR(512),
+    "password" CHAR(512),
+    "registration_key" CHAR(512),
+    "reset_password_key" CHAR(512),
+    "registration_id" CHAR(512)
+);
+timestamp: 2018-11-08T13:53:07.111000
+CREATE TABLE "auth_user"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "first_name" CHAR(128),
+    "last_name" CHAR(128),
+    "email" CHAR(512),
+    "password" CHAR(512),
+    "registration_key" CHAR(512),
+    "reset_password_key" CHAR(512),
+    "registration_id" CHAR(512)
+);
+timestamp: 2018-11-08T14:05:23.929000
+CREATE TABLE "auth_user"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "first_name" CHAR(128),
+    "last_name" CHAR(128),
+    "email" CHAR(512),
+    "password" CHAR(512),
+    "registration_key" CHAR(512),
+    "reset_password_key" CHAR(512),
+    "registration_id" CHAR(512)
+);
+timestamp: 2018-11-08T14:06:15.707000
+CREATE TABLE "auth_user"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "first_name" CHAR(128),
+    "last_name" CHAR(128),
+    "email" CHAR(512),
+    "password" CHAR(512),
+    "registration_key" CHAR(512),
+    "reset_password_key" CHAR(512),
+    "registration_id" CHAR(512)
+);
+timestamp: 2018-11-08T14:08:46.549000
+CREATE TABLE "notebooks"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "title" CHAR(512),
+    "file" CHAR(512)
+);
+faked!
+timestamp: 2018-11-08T14:08:46.560000
+CREATE TABLE "notes"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "notebook_id" INTEGER REFERENCES "notebooks" ("id") ON DELETE CASCADE  ,
+    "title" CHAR(512),
+    "body" TEXT
+);
+faked!
+timestamp: 2018-11-20T05:51:15.787000
+ALTER TABLE "notes" ADD "notetitle" CHAR(512);
+faked!
+success!
+success!
+success!
+success!
+success!
+success!
+timestamp: 2018-11-20T05:53:45.448000
+ALTER TABLE "notes" ADD "note" CHAR(512);
+faked!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!

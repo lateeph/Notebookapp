@@ -13,11 +13,11 @@
 	{{if response.flash:}}
   	{{=response.flash}}
   	{{pass}}
-  	<div class="container">
+  <div class="container">
     <div class="row">
       <div class="col-md-2"></div>
       <div class="col-md-8 form-div">
-        <form action="" enctype="multipart/form-data" method="post">
+        <form action="{{=URL('update')}}" enctype="multipart/form-data" method="post">
           <div class="form-group">
             <label for="exampleinputtitle">Title</label>
             <input type="text" class="form-control" placeholder="Title" name="title" value="{{=note.title}}">
@@ -28,9 +28,10 @@
             <textarea type="text" class="form-control" placeholder="body" name="body">{{=note.body}}</textarea>
           </div>
 
-          <input type="hidden" name="_formname" value="note">
-          <input type="hidden" name="notebook_id" value="{{=note.id}}">
+          
 
+          <input type="hidden" name="id" value="{{=note.id}}">
+          <input type="hidden" name="notebookid" value="{{=notebookId}}">
           <div>
             <button type="submit">Update Note</button>
           </div>

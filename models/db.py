@@ -92,7 +92,7 @@ auth = Auth(db, host_names=configuration.get('host.names'))
 # create all tables needed by auth, maybe add a list of extra fields
 # -------------------------------------------------------------------------
 auth.settings.extra_fields['auth_user'] = []
-auth.define_tables(username=False, signature=False)
+auth.define_tables(username=False, signature=False, migrate=False)
 
 # -------------------------------------------------------------------------
 # configure email
@@ -154,7 +154,7 @@ if configuration.get('scheduler.enabled'):
 # auth.enable_record_versioning(db)
 
 
-db = DAL("sqlite://storage.sqlite")
+db = DAL("sqlite://storage.sqlite", migrate=True, fake_migrate=True)
 
 db.define_table('notebooks',
                 Field('title'),

@@ -113,18 +113,38 @@ def deleteNote():
     redirect(request.env.http_referer)
 
 
-def updateNote():
-    noteId = request.args(1) or redirect(URL())
-    notebookId = request.args(0) or redirect(URL())
-    note = db.notes(noteId) or redirect(URL())
-    form = SQLFORM(db.notes, noteId)
-    if form.process(session=None, formname='note').accepted:
-        redirect(URL('showNotes', args=notebookId))
-    else:
-        response.flash = 'Error Occurred'
-    return dict(note=note)
+
 
 def showNoteDetails():
     noteId = request.args(0) or redirect(URL())
     note = db.notes(noteId) or redirect(URL())
     return dict(note=note)
+
+def update():
+    submitted_title = request.vars.title
+    submitted_body = request.vars.body
+    submitted_id = request.vars.id
+    notebookId = request.vars.notebookId
+
+    if db(db.notes.id == submitted_id).select():
+
+
+        db(db.notes.id == submitted_id).update(
+            title=submitted_title,
+            body=submitted_body    
+            )
+        return redirect(URL('showNotes', args=notebookId))
+    else:
+        return 'An Error Occurred while deleting note'
+
+
+
+
+
+def updateNote():
+    parameters = request.args
+    submitted_id=parameters[0]
+    notebookId=parameters[1]
+    note=db(db.notes.id==submitted_id).select()[0]
+    return dict(note=note, notebookId=notebookId)
+
